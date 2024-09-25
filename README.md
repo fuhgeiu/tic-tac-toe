@@ -42,6 +42,12 @@ NOTES
     GUI branch utilizes the mygui library to dispaly and interact with ui, by communicating 
     with grpahics api. it will communicate with the TTT core files to run the game
 
+    console and gui branch includes fils for testing, but not needed in running program
+
+      -board_test.cpp
+      -game data test.cpp
+      
+
 
     
     
