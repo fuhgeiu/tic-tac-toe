@@ -1,16 +1,21 @@
 #include <iostream>
 #include "board.hpp"
 /*
-    class, store game session data
+    1) class, store game session data
 
-    core::data (starting player, player 1 symbol, player 2 symbol)
-    core::data (starting player)
+    2) core::data (starting player, player 1 symbol, player 2 symbol)
+    3) core::data (starting player)
+    4) core:data::game (starter*, player*, player*)
+    5) core::data::game (player*, player*, size_t)
 
     core::data.switch_player () return void
     core::data.current_player () return char, current player symbol
+    c
 
-
-
+    ____________________________________________________________________________________________________________
+    1) class to store game data
+    2) constructer (starting player*, player1*, player2*) must pass pointers instantiated by the player class
+    3) constructor
  */
 
 namespace core_data {
@@ -30,6 +35,9 @@ public:
 }; // end of class
 
 } // end of namespace player
+
+
+
 
    namespace game {
 
@@ -75,7 +83,10 @@ public:
       current_playerC = starting_player; player_1C = player_1_symbol; player_2C = player_2_symbol;
    };
 
-   ~ game_data () { delete[] m_data; }              // warning! undefined when m_data is a nullptr and destructor called
+   ~ game_data () {
+       if (m_data != nullptr) delete[] m_data;     // warning! undefined when m_data is a nullptr and destructor called
+       if (board_data_obj != nullptr) delete board_data_obj;    // warning! will not destruct when nullptr
+   }
 
 public:
 

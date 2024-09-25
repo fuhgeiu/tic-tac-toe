@@ -15,14 +15,8 @@
  */
 
 
-
-
-
-
-
 int main () {
 
-// instantiate objects
 
     auto *player1 = new core_data::player::player_data('o');          // player1 data
     auto *player2 = new core_data::player::player_data('x');          // player2 data
@@ -32,7 +26,7 @@ int main () {
 
 // loop {
     bool q = true;
-    int t;
+
     while (q) {
 
         game1->print_board_board_data();                                      // print board
@@ -47,11 +41,18 @@ int main () {
         // check if player won
 
 
+
     }
+
+
+    // if player won, than delete and there destructors called
+    delete player1;
+    delete player2;
+    delete game1;
+
+}
+
 
 // prompt if user wants to play again
 
-    delete player1; delete player2;
 
-
-}

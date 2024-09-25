@@ -20,7 +20,7 @@ public:
        strm::range_cond *cond =  new strm::range_cond(static_cast<int>(cont_size+1),0); range_spot = cond;
    }
 
-   ~ board_data () { delete m_data; }                                      // warning! undeifned if m_data is a nullptr
+   ~ board_data () { delete m_data; delete range_spot;}                    // warning! undeifned if m_data is a nullptr
 
    void create_board_data_container (size_t length) {                             // warning! only pass in unsigned int
 
@@ -59,9 +59,15 @@ public:
        m_data[static_cast<size_t> (spot)-1] = current_player;
    }
 
-   
+   // to get a win
+
+   void won() {
+
+       
 
 
+
+   }
 
 
    // only for test

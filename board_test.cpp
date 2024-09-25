@@ -32,8 +32,4 @@ int main () {
     game4->print_board_board_data();
 
     temp3.range();
-
-
-
-
 }

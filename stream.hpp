@@ -38,9 +38,9 @@ class condition {
 
 public:
 
-    int pass_condition (int i);
+    virtual int pass_condition () = 0;
 
-    int pass_conditon (int i);
+    virtual void output_range () = 0;
 
 };
 
@@ -62,6 +62,7 @@ public:
             else return false;
     }
 
+    void output_range ()  { std::cout << "upper bound" << upper_bound; std::cout << "lower bound" << lower_bound; }
 };
 
 
@@ -118,7 +119,7 @@ public:
 
 class conditional {                                             // class for stream return
 
-     condition condition;                                       // store condition for object
+     condition *condition;                                       // store condition for object
 
 public:
 
