@@ -16,16 +16,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		B0E2A8B42CA525E300EDC495 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B0E2A8A02CA5238C00EDC495 /* tic tac toe xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "tic tac toe xcode"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E2A8AC2CA525A900EDC495 /* board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = board.hpp; sourceTree = "<group>"; };
+		B0E2A8AD2CA525A900EDC495 /* game data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "game data.hpp"; sourceTree = "<group>"; };
+		B0E2A8AF2CA525A900EDC495 /* str.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = str.hpp; sourceTree = "<group>"; };
+		B0E2A8B02CA525A900EDC495 /* stream.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stream.hpp; sourceTree = "<group>"; };
+		B0E2A8B62CA525E300EDC495 /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B0E2A8A22CA5238C00EDC495 /* tic tac toe xcode */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "tic tac toe xcode";
+			sourceTree = "<group>";
+		};
+		B0E2A8B72CA525E300EDC495 /* tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -38,13 +57,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B0E2A8B32CA525E300EDC495 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B0E2A8972CA5238C00EDC495 = {
 			isa = PBXGroup;
 			children = (
+				B0E2A8AC2CA525A900EDC495 /* board.hpp */,
+				B0E2A8AD2CA525A900EDC495 /* game data.hpp */,
+				B0E2A8AF2CA525A900EDC495 /* str.hpp */,
+				B0E2A8B02CA525A900EDC495 /* stream.hpp */,
 				B0E2A8A22CA5238C00EDC495 /* tic tac toe xcode */,
+				B0E2A8B72CA525E300EDC495 /* tests */,
 				B0E2A8A12CA5238C00EDC495 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				B0E2A8A02CA5238C00EDC495 /* tic tac toe xcode */,
+				B0E2A8B62CA525E300EDC495 /* tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +114,28 @@
 			productReference = B0E2A8A02CA5238C00EDC495 /* tic tac toe xcode */;
 			productType = "com.apple.product-type.tool";
 		};
+		B0E2A8B52CA525E300EDC495 /* tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0E2A8BA2CA525E300EDC495 /* Build configuration list for PBXNativeTarget "tests" */;
+			buildPhases = (
+				B0E2A8B22CA525E300EDC495 /* Sources */,
+				B0E2A8B32CA525E300EDC495 /* Frameworks */,
+				B0E2A8B42CA525E300EDC495 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B0E2A8B72CA525E300EDC495 /* tests */,
+			);
+			name = tests;
+			packageProductDependencies = (
+			);
+			productName = tests;
+			productReference = B0E2A8B62CA525E300EDC495 /* tests */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -92,6 +146,9 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					B0E2A89F2CA5238C00EDC495 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					B0E2A8B52CA525E300EDC495 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
@@ -111,12 +168,20 @@
 			projectRoot = "";
 			targets = (
 				B0E2A89F2CA5238C00EDC495 /* tic tac toe xcode */,
+				B0E2A8B52CA525E300EDC495 /* tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B0E2A89C2CA5238C00EDC495 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0E2A8B22CA525E300EDC495 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,6 +322,22 @@
 			};
 			name = Release;
 		};
+		B0E2A8BB2CA525E300EDC495 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B0E2A8BC2CA525E300EDC495 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -274,6 +355,15 @@
 			buildConfigurations = (
 				B0E2A8A82CA5238C00EDC495 /* Debug */,
 				B0E2A8A92CA5238C00EDC495 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0E2A8BA2CA525E300EDC495 /* Build configuration list for PBXNativeTarget "tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0E2A8BB2CA525E300EDC495 /* Debug */,
+				B0E2A8BC2CA525E300EDC495 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
