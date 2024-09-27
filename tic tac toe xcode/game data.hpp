@@ -1,21 +1,26 @@
 #include <iostream>
 #include "board.hpp"
 /*
-    1) class, store game session data
+    Class
+    A) class, store game session data
 
-    2) core::data (starting player, player 1 symbol, player 2 symbol)
-    3) core::data (starting player)
-    4) core:data::game (starter*, player*, player*)
-    5) core::data::game (player*, player*, size_t)
+    Constructors
+    1) core::data (starting player, player 1 symbol, player 2 symbol)
+    2) core::data (starting player,)
+ 
+    3) core:data::game (starter*, player*, player*)
+    4) core::data::game (player*, player*, size_t)
 
-    core::data.switch_player () return void
-    core::data.current_player () return char, current player symbol
-    c
+    Member Functions
+    1)core::data.switch_player () return void
+    2)core::data.current_player () return char, current player symbol
+    3)core::data
 
     ____________________________________________________________________________________________________________
-    1) class to store game data
-    2) constructer (starting player*, player1*, player2*) must pass pointers instantiated by the player class
-    3) constructor
+    A) class to store game data
+    1) cosntructor to store player data inside on the game_data object, as pirmitives and non user defined data types
+    3) (starting player*, player1*, player2*) must pass pointers instantiated by the player class
+    4)
  */
 
 namespace core_data {
@@ -84,8 +89,8 @@ public:
    };
 
    ~ game_data () {
-       if (m_data != nullptr) delete[] m_data;     // warning! undefined when m_data is a nullptr and destructor called
-       if (board_data_obj != nullptr) delete board_data_obj;    // warning! will not destruct when nullptr
+       if (m_data != nullptr) {delete[] m_data; m_data = nullptr;}     // warning! undefined behavior when m_data is a nullptr and destructor called
+       if (board_data_obj != nullptr) {delete board_data_obj; board_data_obj = nullptr;}  // warning!
    }
 
 public:
