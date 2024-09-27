@@ -75,7 +75,7 @@ public:
    game_data (player::player_data *player1, player::player_data *player2, size_t board_initialize_size){
 
        player_1 = player1; player_2 = player2;
-       board::board_data *board_data_instantiate = new board::board_data(board_initialize_size);
+       auto *board_data_instantiate = new board::board_data(board_initialize_size);
        board_data_obj = board_data_instantiate;
    }
 
@@ -117,15 +117,14 @@ public:
 
    void get_set_spot ()  {
 
-       board_data_obj->get_spot_validated(current_player->player_symbol_is(),
-                                          player_1->player_symbol_is(),player_2->player_symbol_is());
+       board_data_obj->get_spot_validated(current_player->player_symbol_is(),player_1->player_symbol_is(),player_2->player_symbol_is());
    }
 
    char const current_player_statusC () { return current_playerC; }           // return only char version
 
    char const current_player_status () {
 
-      if (current_player == nullptr) std::cout << "current player is null";
+       if (current_player == nullptr) {std::cout << "current player is null"; return '\0';}
          else return current_player->player_symbol_is();
    }
 

@@ -29,10 +29,6 @@
 
 /* Begin PBXFileReference section */
 		B0E2A8A02CA5238C00EDC495 /* tic tac toe xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "tic tac toe xcode"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0E2A8AC2CA525A900EDC495 /* board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = board.hpp; sourceTree = "<group>"; };
-		B0E2A8AD2CA525A900EDC495 /* game data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "game data.hpp"; sourceTree = "<group>"; };
-		B0E2A8AF2CA525A900EDC495 /* str.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = str.hpp; sourceTree = "<group>"; };
-		B0E2A8B02CA525A900EDC495 /* stream.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stream.hpp; sourceTree = "<group>"; };
 		B0E2A8B62CA525E300EDC495 /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -70,10 +66,6 @@
 		B0E2A8972CA5238C00EDC495 = {
 			isa = PBXGroup;
 			children = (
-				B0E2A8AC2CA525A900EDC495 /* board.hpp */,
-				B0E2A8AD2CA525A900EDC495 /* game data.hpp */,
-				B0E2A8AF2CA525A900EDC495 /* str.hpp */,
-				B0E2A8B02CA525A900EDC495 /* stream.hpp */,
 				B0E2A8A22CA5238C00EDC495 /* tic tac toe xcode */,
 				B0E2A8B72CA525E300EDC495 /* tests */,
 				B0E2A8A12CA5238C00EDC495 /* Products */,

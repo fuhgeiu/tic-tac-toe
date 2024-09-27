@@ -12,18 +12,22 @@
     * must define, where the data is to be moved to
 
     class condition - base class                                lines (30-38)
+    1) virtual ~condition ()
+    2) const virtual bool pass_condition (int) = 0
+    3) virtual void output_range () = 0
 
-    inherited class
+    derived class
     1, range ()                                                 lines (40-58)
-
-    class range_cond                                            lines (61-87)
-
     constructors
     1, (int, int)           (upper bound, lower bound)          set a upper and lower bound
     2, (char, int)          (upper or lower bound, int)     set the bound to a lower or upper 'u' upper, 'l' lower
-
-
-
+    ______________________________________________________________________________________________________________________
+    BASE CLASS ::CONDITION
+    1) virtual destructor to be called when heap allocated object derived from base class is deleted
+    2) virtual method for determining whether data passed conditions, return bool      -pure virtual
+    3) virtual method for printing range of the condition, no return     -pure virtual
+    ______________________________________________________________________________________________________________________
+    DERIVED ::RANGE
  */
 
 
@@ -37,17 +41,18 @@ namespace strm {
 class condition {
 
 public:
+    
+    virtual ~condition (){};                  // called after destructor for derived class called, if set to a base class pointer
 
-    virtual int pass_condition () = 0;
+    virtual const bool pass_condition (int) = 0;
 
     virtual void output_range () = 0;
-
 };
 
 class range : public condition {                                                   // class for range condition
 
     int lower_bound, upper_bound;
-    char lower_upper_choice = 'n';
+    char lower_upper_choice;
 
 public:
 
@@ -55,6 +60,7 @@ public:
 
         lower_bound = lower;
         upper_bound = upper;
+        lower_upper_choice = 'n';
     }
     
     range (char lower_upper, int bound) {                        // constructor
@@ -64,7 +70,7 @@ public:
         lower_upper_choice = lower_upper;
     }
 
-    bool pass_condition (int i){
+    const bool pass_condition (int i) {
 
         if (lower_upper_choice == 'n') {
 
@@ -90,57 +96,6 @@ public:
 };
 
 
-class range_cond {
-
-    int lower_bound,upper_bound;
-
-//    int lower_bound,upper_bound;
-    char lower_upper_choice = 'n';
-
-public:
-
-    range_cond (int upper, int lower){                               // constructor
-
-        lower_bound = lower;
-        upper_bound = upper;
-    }
-
-    range_cond (char lower_upper, int bound) {                        // constructor
-
-        if (lower_upper == 'u') upper_bound = bound;
-        if (lower_upper == 'l') lower_bound = bound;
-        lower_upper_choice = lower_upper;
-    }
-
-    void output_range () { std::cout << "upper bound" << upper_bound; std::cout << "lower bound" << lower_bound;}
-
-    bool pass_condition (int i){
-
-        if (lower_upper_choice == 'n') {
-
-            if (i > lower_bound && i < upper_bound) return true;
-            else return false;
-        }
-
-        if (lower_upper_choice == 'l') {
-
-            if (i > lower_bound) return true;
-            else return false;
-        }
-
-        if (lower_upper_choice == 'u') {
-
-            if (i < upper_bound) return true;
-            else return false;
-        }
-        return false;
-    }
-
-};
-
-
-
-
 class conditional {                                             // class for stream return
 
      condition *Condition;                                       // store condition for object
@@ -154,7 +109,9 @@ public:
 
         conditional::Condition = condition;
     }
-
+    
+    conditional (condition* C) {Condition = C;}
+    
 // method to get integars from stream and return using condition passed in constructor
 int move (std::istream &universal_stream) {
 
@@ -162,21 +119,20 @@ int move (std::istream &universal_stream) {
 
         universal_stream >> integar;
 
-        integar = (condition->pass_condition(integar));
+        integar = (Condition->pass_condition(integar));
 
     return std::move(integar);
 }
 
 
 // method to get integars from stream and return using passed in condition object
-template <typename condition>
-int moveif (std::istream &by_stream, condition Cotn) {
+int moveif (std::istream &by_stream, condition* Cotn) {
 
     int integar;
 
         by_stream >> integar;
 
-        integar = (Cotn.pass_condition(integar));
+        integar = (Cotn->pass_condition(integar));
 
     return std::move(integar);
 }
@@ -184,7 +140,7 @@ int moveif (std::istream &by_stream, condition Cotn) {
 
 // method to get characters from stream and return into object (usually string)
 template <typename condition,typename C>
-void moveif (std::istream &by_stream,condition Cotn, C object) {
+void moveif (std::istream &by_stream,condition Cotn, C object) {                        // in progress
 
     char character;
     // contianer to store stream data
@@ -198,35 +154,38 @@ void moveif (std::istream &by_stream,condition Cotn, C object) {
 }
 
 
-char* getline (std::istream &stream,strstd::string string_container) {
+char* getline (std::istream &stream,strstd::string string_container) {                  // in progress
 
-    char character;
+//    char character;
     // string container to return
+    auto *m_data = new char[1];
+
+//    std::getchar();
 
     // while stream is not a null character
 
         // append string container with character from stream
 //  return container
+    return m_data;
 }
-
 
 };  // end class conditional
 
 
-int get (std::istream &by_stream, strm::range_cond Condition_obj) {
+
+
+int get (std::istream &by_stream, condition* Condition) {           // to get int from stream, only return after condition is met
 
     int i;
 
     while (by_stream >> i) {
 
-        if (Condition_obj.pass_condition(i)) return std::move(i);
+        if (Condition->pass_condition(i-1)) {return i;}
             else std::cout << "invalid data\n";
     }
+//    std::cout << "error! stream input error. no valid data found\n";
+    std::cout << "Wrong data type\n";
+    return 0;
 }
-
-
-
-
-
 
 }   // end of namespace

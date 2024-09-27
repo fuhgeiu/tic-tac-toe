@@ -10,24 +10,27 @@ class board_data {
 
     char* m_data = nullptr;                                         // warning! nullptr, do not call destructor
     size_t m_length;
-    strm::range_cond *range_spot = nullptr;                         // warning! nullptr, do not call destructor
-
+    strm::condition *Condition = nullptr;                           // warning! nullptr, do not call destructor
+                                                                    
 public:
 
    board_data () = default;
 
    board_data (size_t cont_size) { m_length = cont_size; create_board_data_container(cont_size);    // instantiate condition
-       strm::range_cond *cond =  new strm::range_cond(static_cast<int>(cont_size+1),0); range_spot = cond;
+       auto *cond =  new strm::range(static_cast<int>(cont_size+1),0); Condition = cond;
    }
 
-   ~ board_data () { delete m_data; delete range_spot;}                    // warning! undefined if m_data is a nullptr
-
+    ~ board_data () {                                                               // warning! undefined if m_data is a nullptr
+       if (m_data != nullptr) delete m_data; m_data = nullptr;
+       if (Condition != nullptr) delete Condition; Condition = nullptr;            // virtual destructor called
+   }
+    
    void create_board_data_container (size_t length) {                             // to create container for data
 
       m_data = new char[length]; m_length = length;                               // warning! new allocated array
 
       for (size_t i = 0; i < length; i++) { m_data[i] = static_cast <char> ((i+1)+'0'); }    // assign numbers to each
-      strm::range_cond *cond =  new strm::range_cond(static_cast<int>(length+1),0); range_spot = cond;
+      auto *cond =  new strm::range(static_cast<int>(length+1),0); Condition = cond;
    }
 
    char index_operator_data (size_t index)  { return m_data[index]; }
@@ -44,16 +47,16 @@ public:
        }
    }
 
-   void range ()  { range_spot->output_range(); }                                   // prints out range from *range_spot
+   void range ()  { Condition->output_range(); }                                   // prints out range from *range_spot
 
    void get_spot_validated (char current_player,char player1, char player2) {        // to check if selected spot is open
 
-       size_t spot = strm::get(std::cin, (*range_spot));                        // stream member to get a int tha is within range
+       size_t spot = strm::get(std::cin, Condition);                        // stream member to get a int tha is within range
 
        while (m_data[spot-1] == player1 || m_data[spot-1] == player2) {   // itterate to check if spot is equal to player character
 
            std::cout << "spot is taken\n";
-           spot = strm::get(std::cin, *range_spot);                             // call stream member to get new spot
+           spot = strm::get(std::cin, Condition);                             // call stream member to get new spot
        }
        m_data[static_cast<size_t> (spot)-1] = current_player;                  // warning! size_t size is bigger than int
    }

@@ -1,4 +1,4 @@
-#include "game data.hpp"
+#include "game_data.hpp"
 
 /*
     1) core_data::game_data (player1*, player2*)
