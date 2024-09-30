@@ -17,7 +17,7 @@ public:
    board_data () = default;
 
    board_data (size_t cont_size) { m_length = cont_size; create_board_data_container(cont_size);    // instantiate condition
-       auto *cond =  new strm::range(static_cast<int>(cont_size+1),0); Condition = cond;
+       auto *cond =  new strm::range(static_cast<int>(cont_size+1),-1); Condition = cond;
    }
 
     ~ board_data () {                                                               // warning! undefined if m_data is a nullptr
@@ -61,16 +61,22 @@ public:
        m_data[static_cast<size_t> (spot)-1] = current_player;                  // warning! size_t size is bigger than int
    }
 
-   // to get a win
+   // to get a win , THIS IS TEMPORARY
+   char won() {
 
-   void won() {
-
+       if ((m_data[0] == m_data[1]) && m_data[1] == m_data[2]) return m_data[0];
+       else if ((m_data[3] == m_data[4]) && m_data[3] == m_data[5]) return m_data[4];
+       else if ((m_data[6] == m_data[7]) && m_data[7] == m_data[8]) return m_data[6];
        
+       else if ((m_data[0] == m_data[3]) && m_data[3] == m_data[6]) return m_data[3];
+       else if ((m_data[1] == m_data[4]) && m_data[4] == m_data[7]) return m_data[4];
+       else if ((m_data[2] == m_data[5]) && m_data[5] == m_data[8]) return m_data[4];
 
-
-
+       else if ((m_data[0] == m_data[4]) && m_data[4] == m_data[8]) return m_data[4];
+       else if ((m_data[2] == m_data[4]) && m_data[4] == m_data[6]) return m_data[4];
+       else return '\0';
+       
    }
-
 
    // only for test
     bool test_board_contianer () {

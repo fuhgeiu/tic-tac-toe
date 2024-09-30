@@ -178,14 +178,15 @@ int get (std::istream &by_stream, condition* Condition) {           // to get in
 
     int i;
 
-    while (by_stream >> i) {
+    while (true) {
 
+        by_stream >> i;
         if (Condition->pass_condition(i-1)) {return i;}
-            else std::cout << "invalid data\n";
+        else if (std::cin.fail()) {std::cout << "invalid data\n"; std::cin.clear(); std::cin.ignore();}
+        else break;
     }
-//    std::cout << "error! stream input error. no valid data found\n";
-    std::cout << "Wrong data type\n";
-    return 0;
+    
+    return i;
 }
 
 }   // end of namespace

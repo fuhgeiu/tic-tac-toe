@@ -127,6 +127,8 @@ public:
        if (current_player == nullptr) {std::cout << "current player is null"; return '\0';}
          else return current_player->player_symbol_is();
    }
+    
+    char get_win () {return board_data_obj->won();}
 
     void print_board_board_data () { board_data_obj->print_board(); }
 
