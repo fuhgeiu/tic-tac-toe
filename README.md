@@ -13,7 +13,7 @@ DISCRIPTION, key points
 
 CONTENTS
 
-- main branch,  readme file and git nessasary files
+- main branch,  readme file and git nessasary files, no project files 
 
 - console xcode branch, includes folder containing files and target
 
@@ -25,9 +25,9 @@ CONTENTS
 GUIDE
 -
 
--CONSOLE    /Run console version, no pakage or targets 
+-CONSOLE    /Run console version, no pakage or targets  (branch "console")
 
-  - to run console version (just files, use compiler of ur choice) download these files
+  - to run console version (just files, use compiler of ur choice) download these files in the console branch
 
         -board.hpp
 
@@ -45,9 +45,9 @@ GUIDE
 __________________________________________________________________________________________________________
 
 
--CONSOLE XCODE    /Run console using a xcode project (recomemded for mac users who have xcode)
+-CONSOLE XCODE    /Run console using a xcode project (recomemded for mac users who have xcode)  (branch "console_xcode")   
 
-  - to run xcode concolse, download this folder
+  - to run xcode concolse, download this folder in the console_xcode branch
 
         -tic tac toe xcode
 
@@ -59,7 +59,7 @@ ________________________________________________________________________________
 
 -GUI  (WARNING!!!!   IN PROGRESS   DO NOT CLONE BRANCH OR ATTEMPT TO RUN!)    /Run a gui application using metal api 
 
-  - download the folder
+  - download the folder in the gui branch
 
         -gui_metal
 
