@@ -27,17 +27,47 @@ namespace core_data {
 
     namespace player {
 
-class player_data {                                         // store player data
-
+//class player_data {                                         // store player data
+//
+//    char player_symbol;
+//
+//public:
+//
+//    player_data () = default;
+//    player_data(char symbol) { player_symbol = symbol; }
+//
+//    char player_symbol_is () { return player_symbol; }
+//}; // end of class
+    
+class player_data {
+        
+public:
+    virtual const char player_symbol_is () = 0;
+}; // end of class
+    
+    
+class human : public player_data {
+    
     char player_symbol;
 
 public:
+        
+    human () = default;
+    human (char symbol) { player_symbol = symbol; }
 
-    player_data () = default;
-    player_data(char symbol) { player_symbol = symbol; }
-
-    char player_symbol_is () { return player_symbol; }
+    const char player_symbol_is () { return player_symbol; }
+}; // end of human class
+    
+class computer : public player_data {
+        
+    char player_symbol = 'c';
+    
+public:
+    
+    computer () = default;
+        
 }; // end of class
+    
 
 } // end of namespace player
 

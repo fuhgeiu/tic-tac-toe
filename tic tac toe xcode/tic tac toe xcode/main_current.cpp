@@ -24,8 +24,8 @@ int main () {
     
     while (w) {
         
-        auto *player1 = new core_data::player::player_data('o');          // player1 data
-        auto *player2 = new core_data::player::player_data('x');          // player2 data
+        auto *player1 = new core_data::player::human('o');          // player1 data
+        auto *player2 = new core_data::player::human('x');          // player2 data
         auto *game1 = new core_data::game::game_data(player1,player2,9);   // game data   2)
         
         game1->set_curernt_player(player1);                            // set current player (player::data *player)

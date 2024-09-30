@@ -21,16 +21,6 @@ struct win {
     // temp
     
     
-    bool win () {
-        
-        char player = 
-        
-        
-        
-        
-    }
-    
-    
     
 }
 
@@ -39,6 +29,9 @@ struct win {
 
 
 // find row
+
+// match most recent player spot choice along with the one before that to determine the nessasary number needed before that
+// if the 3 number needed to win exists before than, there is a win
 
 // get arrays from combination list with coresponding rows
 
