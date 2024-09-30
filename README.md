@@ -34,6 +34,8 @@ run console version
 
       -stream.hpp
 
+      -str.hpp
+
 - to run the gui version
 
 
