@@ -46,7 +46,7 @@ Run console version, no pakage or targets
 - using a compiler of ur choice, set the "main_current.cpp" as the target/build file/main file
 
 
-XCODE
+CONSOLE XCODE
 
 Run console using a xcode project (recomemded for mac users who have xcode)
 
@@ -58,13 +58,26 @@ Run console using a xcode project (recomemded for mac users who have xcode)
 - make sure tic tac toe xcode target is being used, than build (will open console, change with scheme edit)
 
 
+
+GUI  (WARNING!!!!   IN PROGRESS   DO NOT CLONE BRANCH OR ATTEMPT TO RUN!)
+
+Run a gui application using metal api 
+
+- download the folder
+
+        -gui_metal
+
+ - once cloned, to run use a compiler of ur choice to run the "gui_TTT.cpp" file.
+
+
 NOTES
 
     GUI branch utilizes the mygui library to dispaly and interact with ui, by communicating 
     with grpahics api. it will communicate with the TTT core files to run the game.
 
-    currently game loop is run on a main.cpp file temporary as i prepare for adapting the game for gui application 
+    currently gui is only being tested and created using apple metal api, will have versions later using direct x api for windows
 
+    currently game loop is run on a main.cpp file temporary as i prepare for adapting the game for gui application 
 
     currently uses a simple way to check wins via checking all possible combinaitons. preparing the algorithim hpp 
     file to replace current implementation. 
