@@ -44,8 +44,7 @@ Run console version, no pakage or targets
         
       
 - using a compiler of ur choice, set the "main_current.cpp" as the target/build file/main file
-
-
+__________________________________________________________________________________________________________
 
 
 CONSOLE XCODE
@@ -58,9 +57,7 @@ Run console using a xcode project (recomemded for mac users who have xcode)
 
 - Open the  [tic tac toe xcode.xcodeproj] file
 - make sure tic tac toe xcode target is being used, than build (will open console, change with scheme edit)
-
-
-
+__________________________________________________________________________________________________________
 
 
 GUI  (WARNING!!!!   IN PROGRESS   DO NOT CLONE BRANCH OR ATTEMPT TO RUN!)
@@ -72,6 +69,7 @@ Run a gui application using metal api
         -gui_metal
 
  - once cloned, to run use a compiler of ur choice to run the "gui_TTT.cpp" file.
+__________________________________________________________________________________________________________
 
 
 NOTES
