@@ -2,7 +2,7 @@
 
 struct win {
     
-   // list of combinations, in order of rows
+   // list of combinations, in order of selected spot
    
     // 1 - [1,2,3],[1,4,7],[1,5,9]
     // 2 - [1,2,3],[2,5,7]
