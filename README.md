@@ -13,7 +13,7 @@ DISCRIPTION, key points
 
 CONTENTS
 
-- main branch,  readme file and git nessasary files
+- main branch,  readme file and git nessasary files, no project files 
 
 - console xcode branch, includes folder containing files and target
 
@@ -25,39 +25,59 @@ CONTENTS
 GUIDE
 -
 
-CONSOLE
+-CONSOLE    /Run console version, no pakage or targets  (branch "console")
 
-Run console version, no pakage or targets 
+  - to run console version (just files, use compiler of ur choice) download these files in the console branch
 
-- to run console version (just files, use compiler of ur choice) download these files
+        -board.hpp
 
-      -board.hpp
+        -game_data.hpp
 
-      -game_data.hpp
+        -main_current.cpp
 
-      -main_current.cpp
+        -stream.hpp
 
-      -stream.hpp
+        -algorithim.hpp
+
+        
       
-- using a compiler of ur choice, set the main_current.cpp as the target/build file/main file
+  - using a compiler of ur choice, set the "main_current.cpp" as the target/build file/main file
+__________________________________________________________________________________________________________
 
 
-XCODE
+-CONSOLE XCODE    /Run console using a xcode project (recomemded for mac users who have xcode)  (branch "console_xcode")   
 
-Run console using a xcode project (recomemded for mac users who have xcode)
+  - to run xcode concolse, download this folder in the console_xcode branch
 
-- to run xcode concolse, download this folder
+        -tic tac toe xcode
 
-      -tic tac toe xcode
+  - Open the  [tic tac toe xcode.xcodeproj] file
+  - !warning! make sure tic tac toe xcode target is being used, if test target is selected, only tests will run
+  - Press play button, to build and run (will open console, change with scheme edit)
+__________________________________________________________________________________________________________
 
-- Open the  [tic tac toe xcode.xcodeproj] file
-- make sure tic tac toe xcode target is being used, than build (will open console, change with scheme edit)
+
+-GUI  (WARNING!!!!   IN PROGRESS   DO NOT CLONE BRANCH OR ATTEMPT TO RUN!)    /Run a gui application using metal api 
+
+  - download the folder in the gui branch
+
+        -gui_metal
+
+  - once cloned, to run use a compiler of ur choice to run the "gui_TTT.cpp" file.
+__________________________________________________________________________________________________________
 
 
-NOTES
+DEV NOTES
 
     GUI branch utilizes the mygui library to dispaly and interact with ui, by communicating 
-    with grpahics api. it will communicate with the TTT core files to run the game
+    with grpahics api. it will communicate with the TTT core files to run the game.
+
+    currently gui is only being tested and created using apple metal api, will have versions later using direct x api for windows
+
+    currently game loop is run on a main.cpp file temporary as i prepare for adapting the game for gui application 
+
+    currently uses a simple way to check wins via checking all possible combinaitons. preparing the algorithim hpp 
+    file to replace current implementation. 
 
 
     
