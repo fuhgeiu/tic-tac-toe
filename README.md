@@ -27,48 +27,48 @@ GUIDE
 
 CONSOLE
 
-Run console version, no pakage or targets 
+  Run console version, no pakage or targets 
 
-- to run console version (just files, use compiler of ur choice) download these files
+  - to run console version (just files, use compiler of ur choice) download these files
 
-      -board.hpp
+        -board.hpp
 
-      -game_data.hpp
+        -game_data.hpp
 
-      -main_current.cpp
+        -main_current.cpp
 
-      -stream.hpp
+        -stream.hpp
 
-      -algorithim.hpp
+        -algorithim.hpp
 
         
       
-- using a compiler of ur choice, set the "main_current.cpp" as the target/build file/main file
+  - using a compiler of ur choice, set the "main_current.cpp" as the target/build file/main file
 __________________________________________________________________________________________________________
 
 
 CONSOLE XCODE
 
-Run console using a xcode project (recomemded for mac users who have xcode)
+  Run console using a xcode project (recomemded for mac users who have xcode)
 
-- to run xcode concolse, download this folder
+  - to run xcode concolse, download this folder
 
-      -tic tac toe xcode
+        -tic tac toe xcode
 
-- Open the  [tic tac toe xcode.xcodeproj] file
-- make sure tic tac toe xcode target is being used, than build (will open console, change with scheme edit)
+  - Open the  [tic tac toe xcode.xcodeproj] file
+  - make sure tic tac toe xcode target is being used, than build (will open console, change with scheme edit)
 __________________________________________________________________________________________________________
 
 
 GUI  (WARNING!!!!   IN PROGRESS   DO NOT CLONE BRANCH OR ATTEMPT TO RUN!)
 
-Run a gui application using metal api 
+  Run a gui application using metal api 
 
-- download the folder
+  - download the folder
 
         -gui_metal
 
- - once cloned, to run use a compiler of ur choice to run the "gui_TTT.cpp" file.
+  - once cloned, to run use a compiler of ur choice to run the "gui_TTT.cpp" file.
 __________________________________________________________________________________________________________
 
 
