@@ -46,6 +46,8 @@ Run console version, no pakage or targets
 - using a compiler of ur choice, set the "main_current.cpp" as the target/build file/main file
 
 
+
+
 CONSOLE XCODE
 
 Run console using a xcode project (recomemded for mac users who have xcode)
@@ -56,6 +58,8 @@ Run console using a xcode project (recomemded for mac users who have xcode)
 
 - Open the  [tic tac toe xcode.xcodeproj] file
 - make sure tic tac toe xcode target is being used, than build (will open console, change with scheme edit)
+
+
 
 
 
