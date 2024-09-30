@@ -25,9 +25,7 @@ CONTENTS
 GUIDE
 -
 
-CONSOLE
-
-  Run console version, no pakage or targets 
+-CONSOLE    /Run console version, no pakage or targets 
 
   - to run console version (just files, use compiler of ur choice) download these files
 
@@ -47,9 +45,7 @@ CONSOLE
 __________________________________________________________________________________________________________
 
 
-CONSOLE XCODE
-
-  Run console using a xcode project (recomemded for mac users who have xcode)
+-CONSOLE XCODE    /Run console using a xcode project (recomemded for mac users who have xcode)
 
   - to run xcode concolse, download this folder
 
@@ -60,9 +56,7 @@ CONSOLE XCODE
 __________________________________________________________________________________________________________
 
 
-GUI  (WARNING!!!!   IN PROGRESS   DO NOT CLONE BRANCH OR ATTEMPT TO RUN!)
-
-  Run a gui application using metal api 
+-GUI  (WARNING!!!!   IN PROGRESS   DO NOT CLONE BRANCH OR ATTEMPT TO RUN!)    /Run a gui application using metal api 
 
   - download the folder
 
