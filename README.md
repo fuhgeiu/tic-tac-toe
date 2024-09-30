@@ -37,6 +37,8 @@ GUIDE
 
         -stream.hpp
 
+        -str.hpp
+
         -algorithim.hpp
 
         
