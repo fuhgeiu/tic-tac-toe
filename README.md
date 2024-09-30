@@ -38,8 +38,12 @@ Run console version, no pakage or targets
       -main_current.cpp
 
       -stream.hpp
+
+      -algorithim.hpp
+
+        
       
-- using a compiler of ur choice, set the main_current.cpp as the target/build file/main file
+- using a compiler of ur choice, set the "main_current.cpp" as the target/build file/main file
 
 
 XCODE
@@ -57,7 +61,13 @@ Run console using a xcode project (recomemded for mac users who have xcode)
 NOTES
 
     GUI branch utilizes the mygui library to dispaly and interact with ui, by communicating 
-    with grpahics api. it will communicate with the TTT core files to run the game
+    with grpahics api. it will communicate with the TTT core files to run the game.
+
+    currently game loop is run on a main.cpp file temporary as i prepare for adapting the game for gui application 
+
+
+    currently uses a simple way to check wins via checking all possible combinaitons. preparing the algorithim hpp 
+    file to replace current implementation. 
 
 
     
