@@ -52,7 +52,8 @@ ________________________________________________________________________________
         -tic tac toe xcode
 
   - Open the  [tic tac toe xcode.xcodeproj] file
-  - make sure tic tac toe xcode target is being used, than build (will open console, change with scheme edit)
+  - !warning! make sure tic tac toe xcode target is being used, if test target is selected, only tests will run
+  - Press play button, to build and run (will open console, change with scheme edit)
 __________________________________________________________________________________________________________
 
 
@@ -66,7 +67,7 @@ ________________________________________________________________________________
 __________________________________________________________________________________________________________
 
 
-NOTES
+DEV NOTES
 
     GUI branch utilizes the mygui library to dispaly and interact with ui, by communicating 
     with grpahics api. it will communicate with the TTT core files to run the game.
