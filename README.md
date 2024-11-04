@@ -67,6 +67,13 @@ ________________________________________________________________________________
   - once cloned, to run use a compiler of ur choice to run the "gui_TTT.cpp" file.
 __________________________________________________________________________________________________________
 
+GAME GUIDE 
+
+  - classic game mode
+  - battle game mode
+      - allows for special moves, by choosing a special character
+
+  
 
 DEV NOTES
 
