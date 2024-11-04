@@ -182,10 +182,10 @@ int get (std::istream &by_stream, condition* Condition) {           // to get in
 
         by_stream >> i;
         if (Condition->pass_condition(i-1)) {return i;}
-        else if (std::cin.fail()) {std::cout << "invalid data\n"; std::cin.clear(); std::cin.ignore();}
+        else if (std::cin.fail()) {
+            std::cout << "invalid data\n";  std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');}
         else break;
     }
-    
     return i;
 }
 

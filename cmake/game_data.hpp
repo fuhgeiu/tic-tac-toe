@@ -1,5 +1,6 @@
 #include <iostream>
 #include "board.hpp"
+#include "player.hpp"
 /*
     Class
     A) class, store game session data
@@ -24,54 +25,6 @@
  */
 
 namespace core_data {
-
-    namespace player {
-
-//class player_data {                                         // store player data
-//
-//    char player_symbol;
-//
-//public:
-//
-//    player_data () = default;
-//    player_data(char symbol) { player_symbol = symbol; }
-//
-//    char player_symbol_is () { return player_symbol; }
-//}; // end of class
-    
-class player_data {
-        
-public:
-    virtual const char player_symbol_is () = 0;
-}; // end of class
-    
-    
-class human : public player_data {
-    
-    char player_symbol;
-
-public:
-        
-    human () = default;
-    human (char symbol) { player_symbol = symbol; }
-
-    const char player_symbol_is () { return player_symbol; }
-}; // end of human class
-    
-class computer : public player_data {
-        
-    char player_symbol = 'c';
-    
-public:
-    
-    computer () = default;
-        
-}; // end of class
-    
-
-} // end of namespace player
-
-
 
 
    namespace game {
@@ -108,6 +61,13 @@ public:
        auto *board_data_instantiate = new board::board_data(board_initialize_size);
        board_data_obj = board_data_instantiate;
    }
+    
+    game_data (player::player_data *starter,player::player_data *player1,player::player_data *player2,size_t board_initialize_size){
+
+       player_1 = player1; player_2 = player2; current_player = starter;
+       auto *board_data_instantiate = new board::board_data(board_initialize_size);
+       board_data_obj = board_data_instantiate;
+    }
 
 public:
 
@@ -121,6 +81,8 @@ public:
    ~ game_data () {
        if (m_data != nullptr) {delete[] m_data; m_data = nullptr;}     // warning! undefined behavior when m_data is a nullptr and destructor called
        if (board_data_obj != nullptr) {delete board_data_obj; board_data_obj = nullptr;}  // warning!
+       if (player_1 != nullptr) {delete player_1;}
+       if (player_2 != nullptr) {delete player_2;}
    }
 
 public:

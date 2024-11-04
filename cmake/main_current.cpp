@@ -21,32 +21,27 @@ int main () {
     while (w) {
         
         // show main menu and get selection on what game mode
-//        user_interface::main_menu main_menu;
-        auto *main_menu = new user_interface::main_menu;                                // to dispaly main menu and store game mode
+        user_interface::main_menu main_menu;
         
-        main_menu->prompt();                                                    // prompt for a game mode
-        main_menu->get_game_mode();                                             // method to assign main_menu.game_mode
+        main_menu.prompt();
+        main_menu.get_game_mode();
         
-        auto *players = new user_interface::instantiate_players(main_menu->game_mode);     //Warning! players will not be mutible
+        user_interface::instantiate_players players(main_menu.game_mode);
         
-//      players->instantiate_player1(true);                              // method to instantiate a player::player_data* type const object
-//      players->instantiate_player2(true);                              // method to instantiate a player::player_data* type const object
-        players->instantiate_player1();
-        players->instantiate_player1();
+        players.instantiate_player1();
+        players.instantiate_player2();
         
-        // const flag availible
-        auto *game = new core_data::game::game_data(players->get_player1(),players->get_player1(),players->get_player2(),9);
+        auto *temp_player = new core_data::player::human('0');
         
-//  to instantiate passign in const object, use bool flag
-//        auto *game = new core_data::game::game_data(players->get_player1(),players->get_player1(),players->get_player2(),9,true);
+        std::cout << temp_player->player_symbol_is();
         
-        delete players;                                                     // delete object for onstantiating players
-        delete main_menu;                                                   // delete main_menu object
-        
+        auto *game = new core_data::game::game_data(players.get_player1(),players.get_player1(),players.get_player2(),9);
+
         bool q = true;
-        while (q) {                                                         // start of game loop
+        while (q) {
             
             game->print_board_board_data();                                      // print board
+            
             
             std::cout << "\n\nTurn -> " << game->current_player_status();        // starting player
             

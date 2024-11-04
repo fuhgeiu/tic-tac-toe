@@ -15,7 +15,7 @@ struct win {
     // 9 - [7,8,9],[3,6,9],[1,5,9]
     
     
-   // member to get
+   // member to get 
     
     
     // temp

@@ -1,0 +1,113 @@
+
+High level overview
+
+    core data
+    
+        Class game_data, stores data. main object for which we operate on
+        
+        Class board, store board data and in charge of displaying data
+        
+        Class player_data, stores differnt players and there atributes through derived class and interface
+        
+    user input
+    
+        Class main_menu, class to operate the main menu
+        
+        Class menu_game_mode, menu to operate the game mode
+        
+        Class game_operation, class to operate the game mode
+        
+    players
+    
+        Class player_data interface
+        
+        Class human : player_data, human type player
+        
+        CLass computer : player_data, computer type player
+        
+        Class alchemist : player_data, alchemist type player
+        
+        Class paladin : player_data, paladin type player
+        
+
+Random notes
+
+    for getting user input and change board
+    
+        derived player method to display rules per player type called from the main game object
+        
+        main game object call method to create data for board class to interpret and make changes to its data
+        
+        
+        
+        
+        void get spot () {
+        
+            current_player->display();                                  to display rules based on current player derived class
+            
+            
+        
+        }
+        
+
+        derived player classes will store rules and do validation and will return a board_data_change type
+        
+        derived player classes will not store any data that is sent to board, simply constructs and returns a pakage
+        
+        derived players can be const, if we only instantiate them through user_input, as there we instantiate with symbol
+        
+        derived players class will be read only and or return a pakage which is a const class to store data
+        
+        derived players can be instnatiated with it not being const, but its features are limited
+    
+    
+        board data will take in data from board_data_change type then read it and make modificatoins to its own class accordingly
+        
+        
+    for making chnages to the board
+    
+        first create a board pakage object
+        
+        this object will contain data of what spot to change and what to
+        
+        the board class will pass in the pakage as a const object than, read and make changes to its data from it
+        
+        then it will delete the pakage
+        
+    for making changes to the board
+    
+        call methods from board class by player validation method, validate throgh player interface then pass in data to board methods
+        
+        create specific methods in board, to modify board data, each method has a single way to make changes
+        
+        example, swap marks, pass in 2 spots than board method will modify the board data
+        
+        
+    
+    Playable character types
+    
+        human
+        
+            select a spot within the board range
+            selected spot must not be taken, must be a number and not a char symbol
+        
+        alchemist
+        
+            
+        
+        
+        paladin
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+
+    
+    

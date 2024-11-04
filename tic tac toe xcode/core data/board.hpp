@@ -1,5 +1,4 @@
 #include <iostream>
-#include <sstream>
 #include "stream.hpp"
 
 namespace core_data {
@@ -10,7 +9,9 @@ class board_data {
 
     char* m_data = nullptr;                                         // warning! nullptr, do not call destructor
     size_t m_length;
+    size_t Range_upper, Range_lower;
     strm::condition *Condition = nullptr;                           // warning! nullptr, do not call destructor
+    
                                                                     
 public:
 
@@ -18,11 +19,12 @@ public:
 
    board_data (size_t cont_size) { m_length = cont_size; create_board_data_container(cont_size);    // instantiate condition
        auto *cond =  new strm::range(static_cast<int>(cont_size+1),-1); Condition = cond;
+       Range_upper = cont_size;  Range_lower = 1;
    }
 
     ~ board_data () {                                                               // warning! undefined if m_data is a nullptr
-       if (m_data != nullptr) delete m_data; m_data = nullptr;
-       if (Condition != nullptr) delete Condition; Condition = nullptr;            // virtual destructor called
+       if (m_data != nullptr) delete m_data;
+       if (Condition != nullptr) delete Condition;                                  // virtual destructor called
    }
     
    void create_board_data_container (size_t length) {                             // to create container for data
@@ -32,8 +34,6 @@ public:
       for (size_t i = 0; i < length; i++) { m_data[i] = static_cast <char> ((i+1)+'0'); }    // assign numbers to each
       auto *cond =  new strm::range(static_cast<int>(length+1),0); Condition = cond;
    }
-
-   char index_operator_data (size_t index)  { return m_data[index]; }
 
    void print_board () {                                    // for 3 by 3 with 1d array
 
@@ -46,10 +46,17 @@ public:
            if (i < 2) std::cout << "\n--+---+--\n";
        }
    }
+    
+    
+public:
+    
+   const size_t& range_upper () const {return Range_upper;}
+    
+   const size_t& range_lower () const {return Range_lower;}
 
    void range ()  { Condition->output_range(); }                                   // prints out range from *range_spot
 
-   void get_spot_validated (char current_player,char player1, char player2) {        // to check if selected spot is open
+   void temp (char current_player,char player1, char player2) {        // to check if selected spot is open
 
        size_t spot = strm::get(std::cin, Condition);                        // stream member to get a int tha is within range
 
@@ -60,7 +67,51 @@ public:
        }
        m_data[static_cast<size_t> (spot)-1] = current_player;                  // warning! size_t size is bigger than int
    }
+    
+   const bool range_validation (size_t i) const {
+        
+       return Condition->pass_condition(i);                                            // implicit conversion, ok to loose precision
+   }
+    
+   bool alchemist_special_availible () {
+       
+       size_t turns_taken = 0;
+       for (size_t i = 0; i < m_length; i++) {if (m_data[i] < 10) {turns_taken++;}}
+    
+       if (turns_taken > 2) return true;
+       else return false;
+   }
+    
+   bool palidin_special_availible () {
+        
+       size_t turns_taken = 0;
+       for (size_t i = 0; i < m_length; i++) {if (m_data[i] < 10) {turns_taken++;}}
+    
+       if (turns_taken > 0) return true;
+       else return false;
+   }
+    
+   bool compare_symbols (const char symbol, size_t spot) {
+        
+       if (m_data[spot] == symbol) {return true;} else return false;
+   }
+    
+   void swap_marks (size_t spot1, size_t spot2) {
+        
+       m_data[spot1] = m_data[spot2];
+       m_data[spot2] = m_data[spot1];
+   }
+    
+    
+    
+public:
 
+   void set_board_data (size_t spot, char current_player) {
+        
+       if (current_player == '\n') {std::cout << "WARNING current player is a null character";}
+       m_data[spot-1] = current_player;
+   }
+    
    // to get a win , THIS IS TEMPORARY
    char won() {
 
