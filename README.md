@@ -25,6 +25,7 @@ CONTENTS
 GUIDE
 -
 
+!!!!CURRENTLY NOT AVILIBLE
 -CONSOLE    /Run console version, no pakage or targets  (branch "console")
 
   - to run console version (just files, use compiler of ur choice) download these files in the console branch
