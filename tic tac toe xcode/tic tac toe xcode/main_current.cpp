@@ -32,6 +32,7 @@ int main () {
 //      players->instantiate_player1(true);                              // method to instantiate a player::player_data* type const object
 //      players->instantiate_player2(true);                              // method to instantiate a player::player_data* type const object
         players->instantiate_player1();
+        std::cout << "\n\n";
         players->instantiate_player2();
         
         // const flag availible

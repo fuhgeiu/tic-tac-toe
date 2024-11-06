@@ -18,10 +18,12 @@ struct main_menu {
     void get_game_mode () {
         
         while (true) {
+    
             std::cin >> game_mode;
             if (std::cin.fail() || game_mode > 1) {
                 std::cout << "invalid data\n";
                 std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                continue;
             }
             else break;
         }
@@ -57,10 +59,10 @@ public:
     
     void dispaly_character_options () {
         
-        std::cout << "Battle game mode\n"
+        std::cout
         << "\n 2 choices in characters \n"
         << "1 --<~> Alchemist   ->> can swap 2 marks on the board or make regular move\n"
-        << "2 (-(-- Paladin     ->> can shift existing mark to adjacent spot or make regular move\n";
+        << "2 (-(-- Paladin     ->> can shift existing mark to adjacent spot or make regular move\n\n";
     }
     
     size_t get_character_type () {
@@ -70,7 +72,7 @@ public:
         while (true) {
             
             std::cin >> player_type;
-            if (std::cin.fail() || player_type > 1) {
+            if (std::cin.fail() || player_type > 2) {
                 std::cout << "invalid data\n";
                 std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
@@ -93,12 +95,12 @@ public:
                 continue;
             }
             
-            std::cout << "Is this the correct symbol: " << player_symbol << "? (0) No, (1) Yes\n";
-            
             while (true) {
+                
+                std::cout << "Is this the correct symbol: " << player_symbol << " (0) No, (1) Yes\n";
                 std::cin >> verify;
                 if (std::cin.fail() || verify < 0 || verify > 1) {
-                    std::cout << "Invalid data. Enter 0 (No) or 1 (Yes): ";
+                    std::cout << "Invalid data";
                     std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 } else break;
             }
@@ -154,9 +156,9 @@ public:
             std::cout << "player 2 choose your character\n";
             dispaly_character_options();
             
-            char symbol = get_player_symbol();
-            
             size_t char_type = get_character_type();
+            
+            char symbol = get_player_symbol();
             
             if (char_type == 1) {player2 = new core_data::player::alchemist(symbol);}          // alchemist
             if (char_type == 0) {player2 = new core_data::player::paladin(symbol);}          // temporary change to alchemist
@@ -173,9 +175,9 @@ public:
             std::cout << "player 2 choose your character\n";
             dispaly_character_options();
             
-            char symbol = get_player_symbol();
-            
             size_t char_type = get_character_type();
+            
+            char symbol = get_player_symbol();
             
             if (char_type == 1) {const_player2 = new const core_data::player::alchemist(symbol);}          // alchemist
             if (char_type == 0) {const_player2 = new const core_data::player::paladin(symbol);}          // temporary change to alchemist
