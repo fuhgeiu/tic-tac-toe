@@ -54,17 +54,16 @@ int main () {
             
             game->get_set_spot();                                                // get player spot and validate and update
             
-            std::cout << "spot validated\n";
+//            std::cout << "spot validated\n";
             
             game->switch_player();                                               // switch player
             
-            std::cout << "player symbol switched\n";
+//            std::cout << "player symbol switched\n";
             
             
             if (game->get_win() == '\0') {}
             
             else {game->print_board_board_data(); std::cout << "\n\nplayer :" << game->get_win() << " WON";
-                
                 
                 std::cout << "\nplay another game?, yes(1) no (0) \n";
                 

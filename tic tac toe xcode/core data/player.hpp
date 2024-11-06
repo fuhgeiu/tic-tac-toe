@@ -165,6 +165,9 @@ public:
         
         if (mode == 0) {
             
+            size_t board_spot;
+            bool exit_loop = false;
+            
             while (true) {
                 
                 std::cout << "spot {";
@@ -175,12 +178,14 @@ public:
                 }
                 
                 while (true) {
+                    
                     if (board->range_validation(board_spot) != true) {
                         
                         std::cout << "the spot is taken choose again\n";
-                    } else break;
-                }
-            } board->set_board_data(board_spot, player_symbol);
+                    } else exit_loop = true; break;
+                } if (exit_loop) break;
+            }
+            board->set_board_data(board_spot, player_symbol);
         } // end of validate
     }
     
@@ -271,6 +276,9 @@ public:
         
         if (mode == 0) {
             
+            size_t board_spot;
+            bool exit_loop = false;
+            
             while (true) {
                 
                 std::cout << "spot {";
@@ -281,16 +289,16 @@ public:
                 }
                 
                 while (true) {
+                    
                     if (board->range_validation(board_spot) != true) {
                         
                         std::cout << "the spot is taken choose again\n";
-                    } else break;
-                }
-            } board->set_board_data(board_spot, player_symbol);
+                    } else exit_loop = true; break;
+                } if (exit_loop) break;
+            }
+            board->set_board_data(board_spot, player_symbol);
         }
-        
     } // Validate
-        
         
 }; // end of class paladin
 

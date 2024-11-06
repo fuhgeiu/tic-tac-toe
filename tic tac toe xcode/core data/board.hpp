@@ -188,8 +188,8 @@ public:
    }
     
    // to get a win , THIS IS TEMPORARY
-   char won() {
-
+    char won() {
+       
        if ((m_data[0] == m_data[1]) && m_data[1] == m_data[2]) return m_data[0];
        else if ((m_data[3] == m_data[4]) && m_data[3] == m_data[5]) return m_data[4];
        else if ((m_data[6] == m_data[7]) && m_data[7] == m_data[8]) return m_data[6];
@@ -200,6 +200,7 @@ public:
 
        else if ((m_data[0] == m_data[4]) && m_data[4] == m_data[8]) return m_data[4];
        else if ((m_data[2] == m_data[4]) && m_data[4] == m_data[6]) return m_data[4];
+       
        else return '\0';
        
    }

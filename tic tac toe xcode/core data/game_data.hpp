@@ -138,12 +138,12 @@ public:
    ~ game_data () {
        
        if (m_data != nullptr)               {delete[] m_data; m_data = nullptr; std::cout << "m_data deleted\n";}
+       if (current_player == player_1 || current_player == player_2) {current_player = nullptr;}
        if (board_data_obj != nullptr)       {delete board_data_obj; std::cout << "board data deleted\n";}
        if (player_1 != nullptr)             {delete player_1; std::cout << "player 1 deleted\n";}
        if (const_player_1 != nullptr)       {delete const_player_1; std::cout << "player 1 deleted\n";}
        if (player_2 != nullptr)             {delete player_2; std::cout << "player 2 deleted\n";}
        if (const_player_2 != nullptr)       {delete const_player_2; std::cout << "player 2 deleted\n";}
-       if (current_player != nullptr)       {delete current_player; std::cout << "current player deleted\n";}
        if (current_player != nullptr)       {delete current_player; std::cout << "current player deleted\n";}
        
        std::cout << "sucessfully deleted game\n";
@@ -194,7 +194,7 @@ public:
     
    char get_win () {return board_data_obj->won();}
 
-   void print_board_board_data () { board_data_obj->print_board(); }
+   void print_board_board_data () { board_data_obj->print_board();}
     
     
 public:         // members when not using a board object dependency or player dependecies, !Warning, only classic mode
