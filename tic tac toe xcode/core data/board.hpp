@@ -4,6 +4,42 @@
 namespace core_data {
 // class to disaply board data, with user defined settings and
     namespace board {
+    
+class Adjacent {
+    
+    
+    int on [9] = {2,4,5};
+    int tw [9] = {1,3,4,5,6};
+    int th [9] = {2,5,6};
+    int fr [9] = {1,2,5,6,7};
+    int fv [9] = {1,2,3,4,5,6,7,8,9};
+    int si [9] = {2,3,5,8,9};
+    int sv [9] = {4,5,8};
+    int eg [9] = {4,5,6,7,9};
+    int nn [9] = {5,6,8};
+    
+public:
+    
+//    adjacent () = default;
+    
+    int (&ref_adjacent(size_t spot))[9] {
+        
+        switch (spot) {
+            case 1: return on;
+            case 2: return tw;
+            case 3: return th;
+            case 4: return fr;
+            case 5: return fv;
+            case 6: return si;
+            case 7: return sv;
+            case 8: return eg;
+            case 9: return nn;
+            default: throw std::out_of_range("range violation adjacent");
+        }
+    }
+        
+};
+    
 
 class board_data {
 
@@ -11,7 +47,8 @@ class board_data {
     size_t m_length;
     size_t Range_upper, Range_lower;
     strm::condition *Condition = nullptr;                           // warning! nullptr, do not call destructor
-    
+    Adjacent* adjacent_lists = nullptr;
+    char* adjacent_spots = nullptr;
                                                                     
 public:
 
@@ -20,11 +57,13 @@ public:
    board_data (size_t cont_size) { m_length = cont_size; create_board_data_container(cont_size);    // instantiate condition
        auto *cond =  new strm::range(static_cast<int>(cont_size+1),-1); Condition = cond;
        Range_upper = cont_size;  Range_lower = 1;
+       adjacent_lists = new Adjacent;
    }
 
     ~ board_data () {                                                               // warning! undefined if m_data is a nullptr
        if (m_data != nullptr) delete m_data;
        if (Condition != nullptr) delete Condition;                                  // virtual destructor called
+       if (adjacent_lists != nullptr) delete adjacent_lists;
    }
     
    void create_board_data_container (size_t length) {                             // to create container for data
@@ -73,7 +112,7 @@ public:
        return Condition->pass_condition(i);                                            // implicit conversion, ok to loose precision
    }
     
-   bool alchemist_special_availible () {
+   bool alchemist_special_availible () const {
        
        size_t turns_taken = 0;
        for (size_t i = 0; i < m_length; i++) {if (m_data[i] < 10) {turns_taken++;}}
@@ -82,7 +121,7 @@ public:
        else return false;
    }
     
-   bool palidin_special_availible () {
+   bool palidin_special_availible () const {
         
        size_t turns_taken = 0;
        for (size_t i = 0; i < m_length; i++) {if (m_data[i] < 10) {turns_taken++;}}
@@ -91,17 +130,53 @@ public:
        else return false;
    }
     
-   bool compare_symbols (const char symbol, size_t spot) {
+   bool compare_symbols (const char symbol, size_t spot) const {
         
        if (m_data[spot] == symbol) {return true;} else return false;
    }
     
+   bool is_empty (size_t spot) const {if (m_data[spot] < 10) return true; else return false;}
+    
    void swap_marks (size_t spot1, size_t spot2) {
         
+       char temp = m_data[spot1];
        m_data[spot1] = m_data[spot2];
-       m_data[spot2] = m_data[spot1];
+       m_data[spot2] = temp;
    }
     
+   void  adjacent (size_t spot) {           // allocates adjacent
+        
+       if (adjacent_spots != nullptr) {delete[] adjacent_spots; adjacent_spots = nullptr;}
+       
+       adjacent_spots = new char[m_length];
+       
+       for (size_t i = 0; i < m_length; i++) {adjacent_spots[i] = '\n';}
+       
+       for (size_t i = 0; i < m_length; i++) {
+           
+           size_t index = adjacent_lists->ref_adjacent(spot)[i];
+           if (index < m_length && m_data[index] >= '1' && m_data[index] <= '9') {adjacent_spots[i] = m_data[index];}
+       }
+   }
+    
+   void show_adjacent_spots (size_t spot) {             // show adjacent spots
+        
+       adjacent(spot);
+       
+       std::cout << "availible spots: ";
+       
+       for (size_t i = 0; i < 9; i++) std::cout << adjacent_spots[i];
+   }
+    
+   const bool adjacent_check (size_t spot) const {
+        
+       for (size_t i = 0; i < m_length; i++) {
+           
+           if (adjacent_spots[i] - '0' == spot) {return true;}
+       }  return false;
+   }
+    
+   void shift_symbol (size_t spot2, const char symbol) {m_data[spot2] = symbol;}
     
     
 public:

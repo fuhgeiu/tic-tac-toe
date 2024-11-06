@@ -32,7 +32,7 @@ int main () {
 //      players->instantiate_player1(true);                              // method to instantiate a player::player_data* type const object
 //      players->instantiate_player2(true);                              // method to instantiate a player::player_data* type const object
         players->instantiate_player1();
-        players->instantiate_player1();
+        players->instantiate_player2();
         
         // const flag availible
         auto *game = new core_data::game::game_data(players->get_player1(),players->get_player1(),players->get_player2(),9);

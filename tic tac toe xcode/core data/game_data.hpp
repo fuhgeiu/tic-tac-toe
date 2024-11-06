@@ -87,7 +87,7 @@ public: // constrcutors to instantiate with the use of pointers to defined types
         
        player_1 = player1; player_2 = player2; current_player = starter;
        board_data_obj = new board::board_data(board_initialize_size);
-       if (const_current_player == nullptr) std::cout << "WARNING current player not initialized";
+       if (current_player == nullptr) std::cout << "WARNING current player not initialized";
        if (player_1 == nullptr) std::cout << "WARNING player 1 not initialized";
        if (player_2 == nullptr) std::cout << "WARNING player 2 not initialized";
    }
@@ -99,17 +99,17 @@ public: // const constructors
     
     :   const_player_1 (player1), const_player_2(player2), const_current_player(starter) {
         
-        if (current_player == nullptr) std::cout << "WARNING current player not initialized";
-        if (player_1 == nullptr) std::cout << "WARNING player 1 not initialized";
-        if (player_2 == nullptr) std::cout << "WARNING player 2 not initialized";
+        if (const_current_player == nullptr) std::cout << "WARNING const current player not initialized";
+        if (const_player_1 == nullptr) std::cout << "WARNING const player 1 not initialized";
+        if (const_player_2 == nullptr) std::cout << "WARNING const player 2 not initialized";
     }
     
     game_data (const player::player_data* player1, const player::player_data* player2, size_t board_initialize_size, bool is_const)
     
     :   const_player_1 (player1), const_player_2(player2) {
         
-        if (player_1 == nullptr) std::cout << "WARNING player 1 not initialized";
-        if (player_2 == nullptr) std::cout << "WARNING player 2 not initialized";
+        if (const_player_1 == nullptr) std::cout << "WARNING const player 1 not initialized";
+        if (const_player_2 == nullptr) std::cout << "WARNING const player 2 not initialized";
     }
     
     game_data (const player::player_data* starter, const player::player_data* player1, const player::player_data* player2, size_t board_initialize_size, bool is_const)
@@ -117,9 +117,9 @@ public: // const constructors
     :   const_player_1 (player1), const_player_2(player2), const_current_player(starter) {
         
         board_data_obj = new board::board_data(board_initialize_size);
-        if (current_player == nullptr) std::cout << "WARNING current player not initialized";
-        if (player_1 == nullptr) std::cout << "WARNING player 1 not initialized";
-        if (player_2 == nullptr) std::cout << "WARNING player 2 not initialized";
+        if (const_current_player == nullptr) std::cout << "WARNING const current player not initialized";
+        if (const_player_1 == nullptr) std::cout << "WARNING const player 1 not initialized";
+        if (const_player_2 == nullptr) std::cout << "WARNING const player 2 not initialized";
     }
     
 
@@ -225,7 +225,7 @@ public:         // members when not using a board object dependency or player de
          }
      }
     
-    char acess_data (size_t index)  { return board_data_obj->index_operator_data(index); }
+//    char acess_data (size_t index)  { return board_data_obj->index_operator_data(index); }
     
     
 public:             // test
