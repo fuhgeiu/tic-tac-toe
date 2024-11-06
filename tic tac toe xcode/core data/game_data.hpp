@@ -63,33 +63,34 @@ class game_data {                                           // store game data
 public: // constrcutors to instantiate with the use of pointers to defined types, !can use all games modes
 
    game_data () = default;
-
-   game_data (player::player_data* player1, player::player_data* player2) { player_1 = player1; player_2 = player2; }
-
-   game_data (player::player_data* starter, player::player_data* player1, player::player_data* player2) {
-
-      current_player = starter; player_1 = player1; player_2 = player2;
-      if (current_player == nullptr) std::cout << "WARNING current player not initialized";
-      if (player_1 == nullptr) std::cout << "WARNING player 1 not initialized";
-      if (player_2 == nullptr) std::cout << "WARNING player 2 not initialized";
-      
-   }
-
-   game_data (player::player_data* player1, player::player_data* player2, size_t board_initialize_size){
-
-       player_1 = player1; player_2 = player2;
-       board_data_obj = new board::board_data(board_initialize_size);
+    
+   game_data (player::player_data* player1, player::player_data* player2) : player_1(player1), player_2(player2) {
+       
        if (player_1 == nullptr) std::cout << "WARNING player 1 not initialized";
        if (player_2 == nullptr) std::cout << "WARNING player 2 not initialized";
    }
     
-   game_data (player::player_data* starter, player::player_data* player1, player::player_data* player2, size_t board_initialize_size){
-        
-       player_1 = player1; player_2 = player2; current_player = starter;
-       board_data_obj = new board::board_data(board_initialize_size);
+   game_data (player::player_data* starter, player::player_data* player1, player::player_data* player2)
+    : player_1 (player1), player_2 (player2), current_player(starter)
+   {
        if (current_player == nullptr) std::cout << "WARNING current player not initialized";
        if (player_1 == nullptr) std::cout << "WARNING player 1 not initialized";
        if (player_2 == nullptr) std::cout << "WARNING player 2 not initialized";
+   }
+    
+   game_data(player::player_data* player1, player::player_data* player2, size_t board_initialize_size)
+       : player_1(player1), player_2(player2), board_data_obj(new board::board_data(board_initialize_size))
+   {
+       if (player_1 == nullptr) std::cout << "WARNING: player 1 not initialized\n";
+       if (player_2 == nullptr) std::cout << "WARNING: player 2 not initialized\n";
+   }
+    
+   game_data(player::player_data* starter, player::player_data* player1, player::player_data* player2, size_t board_initialize_size)
+       : player_1(player1), player_2(player2), current_player(starter), board_data_obj(new board::board_data(board_initialize_size))
+   {
+       if (current_player == nullptr) std::cout << "WARNING: current player not initialized\n";
+       if (player_1 == nullptr) std::cout << "WARNING: player 1 not initialized\n";
+       if (player_2 == nullptr) std::cout << "WARNING: player 2 not initialized\n";
    }
     
     

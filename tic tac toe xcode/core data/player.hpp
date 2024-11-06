@@ -113,7 +113,6 @@ public:
     void validate (core_data::board::board_data* board) const override {
         
         size_t mode = 0;
-        size_t board_spot;
         size_t swap1, swap2;
         
         if (board->alchemist_special_availible()) {             // if enough spots on board to use special ability
