@@ -65,8 +65,9 @@ public: // constrcutors to instantiate with the use of pointers to defined types
 
    game_data () = default;
     
-   game_data (player::player_data* player1, player::player_data* player2) : player_1(player1), player_2(player2) {
-       
+   game_data (player::player_data* player1, player::player_data* player2) : player_1(player1), player_2(player2)
+   
+    {
        try {
            if (player_1 == nullptr) {throw c_exception::runtime::acess_nullptr("player_1 failed to initilize");}
            
@@ -118,26 +119,56 @@ public: // const constructors
     game_data (const player::player_data* starter, const player::player_data* player1, const player::player_data* player2, bool is_const)
         :   const_player_1 (player1), const_player_2(player2), const_current_player(starter)
     {
-        if (const_current_player == nullptr) std::cout << "WARNING const current player not initialized";
-        if (const_player_1 == nullptr) std::cout << "WARNING const player 1 not initialized";
-        if (const_player_2 == nullptr) std::cout << "WARNING const player 2 not initialized";
+        try {
+            if (const_player_1 == nullptr) {throw c_exception::runtime::acess_nullptr("const player_1 failed to initilize");}
+            
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+        
+        try {
+            if (const_player_2 == nullptr) {throw c_exception::runtime::acess_nullptr("const player_2 failed to initilize");}
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+        
+        try {
+            if (const_current_player == nullptr) {throw c_exception::runtime::acess_nullptr("const current player failed to initilize");}
+            
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
     }
     
     game_data (const player::player_data* player1, const player::player_data* player2, size_t board_initialize_size, bool is_const)
         :   const_player_1 (player1), const_player_2(player2)
     {
-        if (const_player_1 == nullptr) std::cout << "WARNING const player 1 not initialized";
-        if (const_player_2 == nullptr) std::cout << "WARNING const player 2 not initialized";
+        try {
+            if (const_player_1 == nullptr) {throw c_exception::runtime::acess_nullptr("const player_1 failed to initilize");}
+            
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+        
+        try {
+            if (const_player_2 == nullptr) {throw c_exception::runtime::acess_nullptr("const player_2 failed to initilize");}
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
     }
     
     game_data (const player::player_data* starter, const player::player_data* player1, const player::player_data* player2, size_t board_initialize_size, bool is_const)
     
-           :   const_player_1 (player1), const_player_2(player2), const_current_player(starter)
+    :   const_player_1 (player1), const_player_2(player2), const_current_player(starter),
+        board_data_obj(new board::board_data(board_initialize_size))
     {
-        board_data_obj = new board::board_data(board_initialize_size);
-        if (const_current_player == nullptr) std::cout << "WARNING const current player not initialized";
-        if (const_player_1 == nullptr) std::cout << "WARNING const player 1 not initialized";
-        if (const_player_2 == nullptr) std::cout << "WARNING const player 2 not initialized";
+        try {
+            if (const_player_1 == nullptr) {throw c_exception::runtime::acess_nullptr("const player_1 failed to initilize");}
+            
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+        
+        try {
+            if (const_player_2 == nullptr) {throw c_exception::runtime::acess_nullptr("const player_2 failed to initilize");}
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+        
+        try {
+            if (const_current_player == nullptr) {throw c_exception::runtime::acess_nullptr("const current player failed to initilize");}
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+        
+        try {
+            if (board_data_obj == nullptr) {throw c_exception::runtime::acess_nullptr("board failed to initilize");}
+            
+        } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
     }
     
 
@@ -174,31 +205,56 @@ public:
     
 public:
 
-   void switch_player () {                // warning! current player is nullptr by default, will not switch if not assigned properly
+   void switch_player () {
 
-       if (current_player == nullptr) {std::cout << "WARNING current player is nullptr\n";}
-            if (player_1 == nullptr) {std::cout << "WARNING player1 is null, canot switch\n";}
-            if (player_2 == nullptr) {std::cout << "WARNING player2 is null, cannot switch\n";}
+       try {
+           if (player_1 == nullptr) {throw c_exception::runtime::acess_nullptr("player_1 failed to initilize");}
+           
+       } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+       
+       try {
+           if (player_2 == nullptr) {throw c_exception::runtime::acess_nullptr("player_2 failed to initilize");}
+       } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+       
+       try {
+           if (current_player == nullptr) {throw c_exception::runtime::acess_nullptr("current player failed to initilize");}
+           
+       } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+       
        if (current_player == player_1)  current_player = player_2;            // switch, current player becomes *player_2
             else if (current_player == player_2)  current_player = player_1;       // switch, current player becomes *player_1
    }
     
    void switch_player (bool is_const) {            // const version
-        
-       if (const_current_player == nullptr) {std::cout << "WARNING current player is nullptr\n";}
-           if (const_player_1 == nullptr) {std::cout << "WARNING player1 is null, canot switch\n";}
-           if (const_player_2 == nullptr) {std::cout << "WARNING player2 is null, cannot switch\n";}
+       
+       try {
+           if (const_player_1 == nullptr) {throw c_exception::runtime::acess_nullptr("const player_1 failed to initilize");}
+           
+       } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+       
+       try {
+           if (const_player_2 == nullptr) {throw c_exception::runtime::acess_nullptr("const player_2 failed to initilize");}
+       } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+       
+       try {
+           if (const_current_player == nullptr) {throw c_exception::runtime::acess_nullptr("const current player failed to initilize");}
+           
+       } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+       
        if (const_current_player == const_player_1)  const_current_player = const_player_1;
            else if (const_current_player == const_player_2)  const_current_player = const_player_2;
    }
     
    // do not use, improper function,
-   void set_curernt_player (player::player_data* player)  {current_player = player;}      // set current player
-   void set_current_player (const player::player_data* player, bool is_const) {const_current_player = player;}      // const version
+//   void set_curernt_player (player::player_data* player)  {current_player = player;}      // set current player
+//   void set_current_player (const player::player_data* player, bool is_const) {const_current_player = player;}      // const version
 
    void get_set_spot ()  {
        
-       if (current_player == nullptr) {std::cout << "WARNING current player is nullptr\n";}
+       try{
+           if (current_player == nullptr) {throw c_exception::runtime::acess_nullptr("current player not assighned");}
+       } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+       
        current_player->display_menu(board_data_obj);
        current_player->validate(board_data_obj);
    }
@@ -211,6 +267,10 @@ public:
 
    const char current_player_status () {
 
+       try{
+           if (current_player == nullptr) {throw c_exception::runtime::acess_nullptr("current player not assighned");}
+       } catch (const c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+       
        if (current_player == nullptr) {std::cout << "current player is null"; return '\0';}
        else {return current_player->player_symbol_is();}
    }
