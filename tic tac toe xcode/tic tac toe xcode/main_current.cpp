@@ -36,7 +36,7 @@ int main () {
         players->instantiate_player2();
         
         // const flag availible
-        auto *game = new core_data::game::game_data(players->get_player1(),players->get_player1(),players->get_player2(),9);
+        auto *game = new core_data::game::game_data(players->get_player1(),players->get_player2(),players->get_player1(),9);
         
 //  to instantiate passign in const object, use bool flag
 //        auto *game = new core_data::game::game_data(players->get_player1(),players->get_player1(),players->get_player2(),9,true);
@@ -47,11 +47,11 @@ int main () {
         bool q = true;
         while (q) {                                                         // start of game loop
             
+            std::cout << "\n\n";
             game->print_board_board_data();                                      // print board
             
             std::cout << "\n\nTurn -> " << game->current_player_status();        // starting player
-            
-            std::cout << "\nenter a spot\n:";
+            std::cout << std::endl;
             
             game->get_set_spot();                                                // get player spot and validate and update
             
@@ -83,7 +83,7 @@ int main () {
                     q = false;
                 }
                 
-                if (t == 0) {q = false; w = false;}
+                if (t == 0) {w = false; break;}
             }
         }
         

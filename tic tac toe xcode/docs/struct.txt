@@ -84,20 +84,10 @@ Random notes
         
         
     
-    Playable character types
+
+    improvments
     
-        human
-        
-            select a spot within the board range
-            selected spot must not be taken, must be a number and not a char symbol
-        
-        alchemist
-        
-            
-        
-        
-        paladin
-        
+    
         
         
         

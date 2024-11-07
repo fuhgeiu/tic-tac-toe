@@ -37,10 +37,7 @@ public:
     
     const char& player_symbol_is () const override {return player_symbol;}
     
-    void display_menu (core_data::board::board_data* board) const override {
-        
-        std::cout << "Enter a number " << board->range_lower()  << " - " << board->range_upper()  << std::endl;
-    }
+    void display_menu (core_data::board::board_data* board) const override {}
         
     void validate (core_data::board::board_data* board) const override {
         
@@ -49,6 +46,8 @@ public:
         
         while (true) {
             
+            std::cout << "Enter a number " << board->range_lower()  << " - " << board->range_upper()  << std::endl;
+            
             std::cout << "spot {";
             std::cin >> board_spot;
             if (std::cin.fail()) {
@@ -56,14 +55,14 @@ public:
                 continue;
             }
             
-            while (true) {
+            if (board->range_validation(board_spot) != true) {std::cout << "out of range\n";continue;}
                 
-                if (board->range_validation(board_spot) != true) {
-                    
-                    std::cout << "the spot is taken choose again\n";
-                } else exit_loop = true; break;
-            } if (exit_loop) break;
+            if (board->is_empty(board_spot) == false) {std::cout << "spot is taken\n";}
+                else exit_loop = true; break;
+            
+            if (exit_loop) break;
         }
+        std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         board->set_board_data(board_spot, player_symbol);
     } // end of validate
     
@@ -107,7 +106,6 @@ public:
         
         std::cout << "Alchemist ----<>(( ( \n";
         if (board->alchemist_special_availible()) std::cout << "normal move (0) \nspecial ability availbile, swap marks (1)\n";
-            else std::cout << " normal move, select spot to mark\n";
     }
     
     void validate (core_data::board::board_data* board) const override {
@@ -127,39 +125,50 @@ public:
                     
                     std::cout << "invalid input\n";
                     std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                } else break;
-            } // end of loop
-        } // end of if special
+                }
+                else break;
+            }
+        }
         
-        if (mode == 1) {                                        // if special ability chosen
+        if (mode == 1) {
             
             std::cout << "enter 1st mark to swap \n";
             
-            while (true) {                                      // to get mode
-                
+            while (true) {
                 std::cin >> swap1;
-                
-                if (std::cin.fail()) {
-                    
-                    std::cout << "invalid input\n";
-                    std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                } continue;
-                
-                std::cout << "enter 2nd mark to swap\n";
-                while (true) {                                      // to get mode
-                    
-                    std::cin >> swap2;
-                    
-                    if (std::cin.fail()) {
-                        
-                        std::cout << "invalid input\n";
-                        std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                    } continue;
-                    
-                    if (board->compare_symbols(player_symbol, swap2)) {std::cout << "cannot swap spots with identical symbols\n";}
-                    else break;
+
+                if (std::cin.fail() || (board->range_validation(swap1) == false)) {
+                    std::cout << "Invalid input\n";
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    continue;
                 }
-            }  board->swap_marks(swap1,swap2);
+                
+                if (board->is_empty(swap1)) {std::cout << "cannot swap with blank space\n"; continue;}
+                    
+                break;
+            }
+
+            while (true) {
+                
+                std::cout << "Enter 2nd mark to swap: ";
+                std::cin >> swap2;
+
+                if (std::cin.fail() || (board->range_validation(swap2) == false)) {
+                    std::cout << "Invalid input\n";
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    continue;
+                }
+                
+                if (board->is_empty(swap2)) {std::cout << "cannot swap with blank space\n"; continue;}
+                
+                if (board->compare_symbols(player_symbol, swap2)) {
+                    std::cout << "Cannot swap spots with identical symbols\n";
+                }
+                break;
+            }
+            board->swap_marks(swap1,swap2);
         }
         
         if (mode == 0) {
@@ -169,6 +178,8 @@ public:
             
             while (true) {
                 
+                std::cout << "Enter a number " << board->range_lower()  << " - " << board->range_upper()  << std::endl;
+                
                 std::cout << "spot {";
                 std::cin >> board_spot;
                 if (std::cin.fail()) {
@@ -176,14 +187,14 @@ public:
                     continue;
                 }
                 
-                while (true) {
+                if (board->range_validation(board_spot) != true) {std::cout << "out of range\n";continue;}
                     
-                    if (board->range_validation(board_spot) != true) {
-                        
-                        std::cout << "the spot is taken choose again\n";
-                    } else exit_loop = true; break;
-                } if (exit_loop) break;
+                if (board->is_empty(board_spot) == false) {std::cout << "spot is taken\n";}
+                    else exit_loop = true; break;
+                
+                if (exit_loop) break;
             }
+            std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             board->set_board_data(board_spot, player_symbol);
         } // end of validate
     }
@@ -207,19 +218,18 @@ public:
     void display_menu (core_data::board::board_data* board) const override {
         
         std::cout << "Palidin <><<<+-- \n";
-        if (board->palidin_special_availible()) std::cout << "normal move (0) \nPalidin dpecial move availible (1)\n";
-        else std::cout << "normal move, select spot to mark\n";
+        if (board->palidin_special_availible()) std::cout << "normal move (0) \nspecial move availible (1)\n";
     }
  
     void validate (core_data::board::board_data* board) const override {
         
-        size_t mode = 0, board_spot, special_spot1, special_spot2;
+        size_t mode = 0, special_spot1, special_spot2;
         
-        if (board->palidin_special_availible()) {                   // if special move is availible
+        if (board->palidin_special_availible()) {
             
             std::cout << "enter a mode\n";
             
-            while (true) {                                      // to get mode
+            while (true) {
                 
                 std::cin >> mode;
                 
@@ -227,40 +237,38 @@ public:
                     
                     std::cout << "invalid input\n";
                     std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                } else break;
+                } else {std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); break;}
             }
-        }  // if special availible
-        
-            
+        }
+
         if (mode == 1) {                                        // if special mode
-                
-            while (true) {
-                    
-                std::cout << "choose a spot to shift to an adjacent spot\n";
-                    
-                std::cin >> special_spot1;                                          // spot to move
-                    
-                if (std::cin.fail()) {                                              // valid type
                         
+            while (true) {
+                            
+                std::cout << "choose a spot to shift to an adjacent spot\n";
+                            
+                std::cin >> special_spot1;                                          // spot to move
+                            
+                if (std::cin.fail()) {                                              // valid type
+                                
                     std::cout << "invalid input\n";
                     std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        
                     continue;    // reprompt if not correct type
                 }
-                    
+                            
                 if (board->is_empty(special_spot1)) {std::cout << "cannot move an empty spot\n";}  // spot must not be empty
                     else break;
                 }  // while spot move
-            
+                    
             while (true) {                          // choose adjacent spot
-    
-                std::cout << "choose an adjacent spot\n" << special_spot1 << "-->  \n";
                 
                 board->show_adjacent_spots(special_spot1);          // show adjacnet spots
-                
+            
+                std::cout << "\nchoose an adjacent spot\n" << special_spot1 << "-->";
+                        
                 std::cin >> special_spot2;
                 if (std::cin.fail()) {
-                    
+                            
                     std::cout << "invalid input\n";
                     std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     continue;
@@ -268,9 +276,9 @@ public:
                 if (board->adjacent_check(special_spot2) == false) {std::cout << "must be an adjacent spot\n";}
                     else break;
             }
-            // make changes to board, changes the second spot into the player symbol, change first spot to number
-            board->shift_symbol(special_spot2, player_symbol);
-        
+                    // make changes to board, changes the second spot into the player symbol, change first spot to number
+            board->shift_symbol(special_spot1, special_spot2);
+                
             } // if special move
         
         if (mode == 0) {
@@ -280,6 +288,8 @@ public:
             
             while (true) {
                 
+                std::cout << "Enter a number " << board->range_lower()  << " - " << board->range_upper()  << std::endl;
+                
                 std::cout << "spot {";
                 std::cin >> board_spot;
                 if (std::cin.fail()) {
@@ -287,14 +297,14 @@ public:
                     continue;
                 }
                 
-                while (true) {
+                if (board->range_validation(board_spot) != true) {std::cout << "out of range\n";continue;}
                     
-                    if (board->range_validation(board_spot) != true) {
-                        
-                        std::cout << "the spot is taken choose again\n";
-                    } else exit_loop = true; break;
-                } if (exit_loop) break;
+                if (board->is_empty(board_spot) == false) {std::cout << "spot is taken\n";}
+                    else exit_loop = true; break;
+                
+                if (exit_loop) break;
             }
+            std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             board->set_board_data(board_spot, player_symbol);
         }
     } // Validate

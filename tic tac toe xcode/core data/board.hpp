@@ -22,7 +22,7 @@ public:
     
 //    adjacent () = default;
     
-    int (&ref_adjacent(size_t spot))[9] {
+    int (&ref_adjacent(size_t spot))[9] {           // pass in spot index at 1
         
         switch (spot) {
             case 1: return on;
@@ -45,7 +45,7 @@ class board_data {
 
     char* m_data = nullptr;                                         // warning! nullptr, do not call destructor
     size_t m_length;
-    size_t Range_upper, Range_lower;
+    size_t Range_upper, Range_lower;                                // index at 1
     strm::condition *Condition = nullptr;                           // warning! nullptr, do not call destructor
     Adjacent* adjacent_lists = nullptr;
     char* adjacent_spots = nullptr;
@@ -55,7 +55,7 @@ public:
    board_data () = default;
 
    board_data (size_t cont_size) { m_length = cont_size; create_board_data_container(cont_size);    // instantiate condition
-       auto *cond =  new strm::range(static_cast<int>(cont_size+1),-1); Condition = cond;
+       Condition =  new strm::range(static_cast<int>(cont_size+1),0);
        Range_upper = cont_size;  Range_lower = 1;
        adjacent_lists = new Adjacent;
    }
@@ -109,25 +109,23 @@ public:
     
    const bool range_validation (size_t i) const {
         
-       return Condition->pass_condition(i);                                            // implicit conversion, ok to loose precision
+       return Condition->pass_condition(i);                    // !IMPLICIT CONVERSION, loosing precision does not affect program
    }
     
    bool alchemist_special_availible () const {
        
        size_t turns_taken = 0;
-       for (size_t i = 0; i < m_length; i++) {if (m_data[i] < 10) {turns_taken++;}}
+       for (size_t i = 0; i < m_length; i++) {if (m_data[i] != '1' + i) {turns_taken++;}}
     
-       if (turns_taken > 2) return true;
-       else return false;
+       return (turns_taken > 1);
    }
     
    bool palidin_special_availible () const {
         
        size_t turns_taken = 0;
-       for (size_t i = 0; i < m_length; i++) {if (m_data[i] < 10) {turns_taken++;}}
-    
-       if (turns_taken > 0) return true;
-       else return false;
+       for (size_t i = 0; i < m_length; i++) {if(m_data[i] != '1' + i) {turns_taken++;}}
+       
+       return (turns_taken > 0);
    }
     
    bool compare_symbols (const char symbol, size_t spot) const {
@@ -135,13 +133,13 @@ public:
        if (m_data[spot] == symbol) {return true;} else return false;
    }
     
-   bool is_empty (size_t spot) const {if (m_data[spot] < 10) return true; else return false;}
+   bool is_empty (size_t spot) const {return ((m_data[spot-1] >= '1') && (m_data[spot-1] <= '9'));}
     
    void swap_marks (size_t spot1, size_t spot2) {
         
-       char temp = m_data[spot1];
-       m_data[spot1] = m_data[spot2];
-       m_data[spot2] = temp;
+       char temp = m_data[spot1-1];
+       m_data[spot1-1] = m_data[spot2-1];
+       m_data[spot2-1] = temp;
    }
     
    void  adjacent (size_t spot) {           // allocates adjacent
@@ -155,7 +153,7 @@ public:
        for (size_t i = 0; i < m_length; i++) {
            
            size_t index = adjacent_lists->ref_adjacent(spot)[i];
-           if (index < m_length && m_data[index] >= '1' && m_data[index] <= '9') {adjacent_spots[i] = m_data[index];}
+           if ((index-1) < m_length && m_data[index-1] >= '1' && m_data[index-1] <= '9') {adjacent_spots[i] = m_data[index-1];}
        }
    }
     
@@ -165,7 +163,7 @@ public:
        
        std::cout << "availible spots: ";
        
-       for (size_t i = 0; i < 9; i++) std::cout << adjacent_spots[i];
+       for (size_t i = 0; i < 9; i++) {if (adjacent_spots[i] != '\n') std::cout << adjacent_spots[i] << ',';}
    }
     
    const bool adjacent_check (size_t spot) const {
@@ -176,7 +174,11 @@ public:
        }  return false;
    }
     
-   void shift_symbol (size_t spot2, const char symbol) {m_data[spot2] = symbol;}
+    void shift_symbol (size_t spot1, size_t spot2) {
+        
+        m_data[spot2-1] = m_data[spot1-1];
+        m_data[spot1-1] = spot1 + '0';
+    }
     
     
 public:
