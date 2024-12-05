@@ -1,6 +1,10 @@
 TIC TAC TOE
 -
 
+!!!!! only use the console branch and only download the \xcode folder!!!!
+     /xcode is the target folder.
+
+!!! this file outdated beyond this point!!!
 
 
 DISCRIPTION, key points
