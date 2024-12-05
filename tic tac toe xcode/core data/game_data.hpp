@@ -2,42 +2,7 @@
 #include "board.hpp"
 #include "exceptions.h"
 #include "player.hpp"
-/*
-    Class
-    A) class, store game session data
 
-    Constructors
-    1) core::data (starting player, player 1 symbol, player 2 symbol)
-    2) core::data (starting player,)
- 
-    3) core:data::game (starter*, player*, player*)
-    4) core::data::game (player*, player*, size_t)
-
-    Member Functions
-    1)core::data.switch_player () return void
-    2)core::data.current_player () return char, current player symbol
-    3)core::data
-
-    ____________________________________________________________________________________________________________
-    A) class to store game data
-    1) cosntructor to store player data inside on the game_data object, as pirmitives and non user defined data types
-    3) (starting player*, player1*, player2*) must pass pointers instantiated by the player class
-    4)
- */
-
-/*
- 
- READ ME        CLASS GUIDE
- 
-    
- 
- 
- 
- 
- 
- 
- 
- */
 
 namespace core_data {
 
@@ -223,6 +188,12 @@ public:
        
        if (current_player == player_1)  current_player = player_2;            // switch, current player becomes *player_2
             else if (current_player == player_2)  current_player = player_1;       // switch, current player becomes *player_1
+   }
+    
+   void log_data () {
+        
+        
+        
    }
     
    void switch_player (bool is_const) {            // const version

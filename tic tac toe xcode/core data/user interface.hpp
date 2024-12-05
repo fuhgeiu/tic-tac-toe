@@ -58,9 +58,24 @@ public:
     
 public:
     
-    core_data::player::player_data* get_player1 () {if (player1 == nullptr) {std::cout << "cannot assign1\n"; return nullptr;} else return player1;}
+    core_data::player::player_data* get_player1 () {
+        
+        try { if (player1 == nullptr) throw c_exception::runtime::acess_nullptr("player1 is not initilized \n cannot assign a nullptr");
+            
+        } catch (c_exception::runtime::acess_nullptr& e) {std::cout << "error :" << e.what() << std::endl;}
+
+        return player1;
+    }
     
-    core_data::player::player_data* get_player2 () {if (player2 == nullptr) {std::cout << "cannot assign2\n"; return nullptr;} else return player2;}
+    core_data::player::player_data* get_player2 () {
+        
+        try {if (player2 == nullptr) throw c_exception::runtime::acess_nullptr("player2 is not initilized \n cannot assign a nullptr");
+            
+        } catch (c_exception::runtime::acess_nullptr& e) {std::cout << "error" << e.what() << std::endl;}
+        
+        return player2;
+        
+    }
     
     const core_data::player::player_data* get_player1 (bool const_flag) {return const_player1;}
     

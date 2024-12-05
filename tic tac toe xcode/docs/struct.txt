@@ -84,8 +84,17 @@ Random notes
         
         
     
+    good things
+    
+        core data
+
 
     improvments
+    
+        update readme
+        complete cmake
+        move logic from main file into a class in new folder like /console
+        
     
     
         

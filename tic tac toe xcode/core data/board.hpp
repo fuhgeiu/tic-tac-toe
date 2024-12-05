@@ -58,6 +58,9 @@ public:
        Condition =  new strm::range(static_cast<int>(cont_size+1),0);
        Range_upper = cont_size;  Range_lower = 1;
        adjacent_lists = new Adjacent;
+       
+       // add nullptr acess exception
+       
    }
 
     ~ board_data () {                                                               // warning! undefined if m_data is a nullptr
@@ -72,6 +75,8 @@ public:
 
       for (size_t i = 0; i < length; i++) { m_data[i] = static_cast <char> ((i+1)+'0'); }    // assign numbers to each
       auto *cond =  new strm::range(static_cast<int>(length+1),0); Condition = cond;
+       
+      // add failed instantiation exception
    }
 
    void print_board () {                                    // for 3 by 3 with 1d array
