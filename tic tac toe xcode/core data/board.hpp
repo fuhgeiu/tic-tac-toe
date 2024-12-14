@@ -194,6 +194,11 @@ public:
        m_data[spot-1] = current_player;
    }
     
+   bool is_full () {
+        
+       for (size_t i = 0; i < 9; i++) {if ((m_data[i] - '0') != (i+1)) {}else return false;} return true;
+   }
+    
    // to get a win , THIS IS TEMPORARY
     char won() {
        
@@ -207,6 +212,8 @@ public:
 
        else if ((m_data[0] == m_data[4]) && m_data[4] == m_data[8]) return m_data[4];
        else if ((m_data[2] == m_data[4]) && m_data[4] == m_data[6]) return m_data[4];
+        
+       else if (is_full() == true) {return '\n';}
        
        else return '\0';
        
