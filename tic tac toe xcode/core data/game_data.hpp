@@ -190,11 +190,9 @@ public:
             else if (current_player == player_2)  current_player = player_1;       // switch, current player becomes *player_1
    }
     
-   void log_data () {
-        
-        
-        
-   }
+   char get_player_one_symbol () {return player_1->player_symbol_is();}
+    
+   char get_player_two_symbol () {return player_2->player_symbol_is();}
     
    void switch_player (bool is_const) {            // const version
        

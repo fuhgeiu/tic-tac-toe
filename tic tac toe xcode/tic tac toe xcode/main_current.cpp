@@ -1,5 +1,6 @@
 #include "game_data.hpp"
 #include "user interface.hpp"
+#include "logger.hpp"
 
 /*
     1) core_data::game_data (player1*, player2*)
@@ -17,11 +18,17 @@
 int main () {
     
     bool w = true;
+    size_t games_played = 0;
+    
+    logger_console logger1;
+    logger1.logger_startup();
     
     while (w) {
         
         // show main menu and get selection on what game mode
 //        user_interface::main_menu main_menu;
+        games_played++;
+        
         auto *main_menu = new user_interface::main_menu;                                // to dispaly main menu and store game mode
         
         main_menu->prompt();                                                    // prompt for a game mode
@@ -62,9 +69,12 @@ int main () {
 //            std::cout << "player symbol switched\n";
             
             
-            if (game->get_win() == '\0') {}
+            if (game->get_win() == '\0') { }
             
             else {game->print_board_board_data(); std::cout << "\n\nplayer :" << game->get_win() << " WON";
+                
+                if (game->get_win() == game->get_player_one_symbol()) {logger1.write_game_win_status(1);}
+                if (game->get_win() == game->get_player_two_symbol()) {logger1.write_game_win_status(2);}
                 
                 std::cout << "\nplay another game?, yes(1) no (0) \n";
                 
@@ -90,6 +100,6 @@ int main () {
         
     }
     
-    // prompt if user wants to play again
+    logger1.logger_write_gamesplayed(games_played);
 }
 

@@ -42,16 +42,6 @@
 		B0E2A8B62CA525E300EDC495 /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B0EC69692CFC099E00F36334 /* Exceptions for "core data" folder in "tic tac toe xcode" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				logger.cpp,
-			);
-			target = B0E2A89F2CA5238C00EDC495 /* tic tac toe xcode */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 		B0D5297C2CCF2D5A005FC375 /* Exceptions for "tests" folder in "Compile Sources" phase from "tests" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
@@ -65,9 +55,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B0D5295C2CC9EE8F005FC375 /* core data */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				B0EC69692CFC099E00F36334 /* Exceptions for "core data" folder in "tic tac toe xcode" target */,
-			);
 			path = "core data";
 			sourceTree = "<group>";
 		};
