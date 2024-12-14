@@ -14,7 +14,7 @@ public:
 
 class logger_console {
     
-    std::string filename = "game_data";
+    std::string filename = "game_data.txt";
     
 public:
     
