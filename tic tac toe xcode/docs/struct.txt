@@ -1,7 +1,7 @@
 
 High level overview
 
-    core data
+   game data
     
         Class game_data, stores data. main object for which we operate on
         
@@ -29,6 +29,17 @@ High level overview
         
         Class paladin : player_data, paladin type player
         
+        
+        
+    implement the logging system
+    
+        - to collect the data
+        - format data, by the use of encryption and propriety data
+        - write it to disk
+        
+        - interface for user to interact and view to the log data
+        
+    
 
 Random notes
 
@@ -49,20 +60,6 @@ Random notes
         
         }
         
-
-        derived player classes will store rules and do validation and will return a board_data_change type
-        
-        derived player classes will not store any data that is sent to board, simply constructs and returns a pakage
-        
-        derived players can be const, if we only instantiate them through user_input, as there we instantiate with symbol
-        
-        derived players class will be read only and or return a pakage which is a const class to store data
-        
-        derived players can be instnatiated with it not being const, but its features are limited
-    
-    
-        board data will take in data from board_data_change type then read it and make modificatoins to its own class accordingly
-        
         
     for making chnages to the board
     
@@ -73,6 +70,7 @@ Random notes
         the board class will pass in the pakage as a const object than, read and make changes to its data from it
         
         then it will delete the pakage
+        
         
     for making changes to the board
     
