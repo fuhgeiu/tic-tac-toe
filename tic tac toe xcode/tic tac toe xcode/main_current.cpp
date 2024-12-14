@@ -73,7 +73,7 @@ int main () {
             
             else {game->print_board_board_data();
                 
-                if (game->get_win() == '\n') {std::cout << "tie has occured";}
+                if (game->get_win() == '\n') {std::cout << "\n\ntie has occured";}
                     else std::cout << "\n\nplayer :" << game->get_win() << " WON";
                 
                 if (game->get_win() == game->get_player_one_symbol()) {logger1.write_game_win_status(1);}
