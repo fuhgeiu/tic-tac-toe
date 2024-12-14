@@ -1,6 +1,8 @@
 // to logger
 #include <fstream>
 #include <string>
+#include <unistd.h>         // for unix systems
+#include <limits.h>
 //#include <exception>
 
 class logger {
@@ -14,11 +16,18 @@ public:
 
 class logger_console {
     
-    std::string filename = "game_data.txt";
+    std::string filename = "logfile.txt";
     
 public:
     
     void logger_startup () {                                    // create file if not availible
+        
+        char cwd[PATH_MAX];
+        if (getcwd(cwd, sizeof(cwd)) != nullptr) {
+            std::cout << "Current working directory: " << cwd << '\n';
+        } else {
+            perror("getcwd() error");
+        }
         
         std::fstream file(filename, std::ios::out);
         
@@ -45,7 +54,6 @@ public:
         file.close();
     }
     
-
 };
 
 
